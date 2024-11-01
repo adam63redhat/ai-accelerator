@@ -7,16 +7,16 @@ metadata:
     notebooks.opendatahub.io/oauth-logout-url: ''
     opendatahub.io/accelerator-name: ''
     openshift.io/description: ''
-    openshift.io/display-name: custom-workbench
+    openshift.io/display-name: custom-workbench-0
     notebooks.opendatahub.io/last-image-selection: 'custom-notebook:latest'
-  name: custom-workbench
+  name: custom-workbench-0
   namespace: parasol-insurance
 spec:
   template:
     spec:
       affinity: {}
       containers:
-        - name: custom-workbench
+        - name: custom-workbench-0
           image: 'image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/custom-notebook:latest'
           resources:
             limits:
@@ -28,7 +28,7 @@ spec:
           readinessProbe:
             failureThreshold: 3
             httpGet:
-              path: /notebook/parasol-insurance/custom-workbench/api
+              path: /notebook/parasol-insurance/custom-workbench-0/api
               port: notebook-port
               scheme: HTTP
             initialDelaySeconds: 10
@@ -38,7 +38,7 @@ spec:
           livenessProbe:
             failureThreshold: 3
             httpGet:
-              path: /notebook/parasol-insurance/custom-workbench/api
+              path: /notebook/parasol-insurance/custom-workbench-0/api
               port: notebook-port
               scheme: HTTP
             initialDelaySeconds: 10
@@ -51,7 +51,7 @@ spec:
                 --ServerApp.port=8888
                 --ServerApp.token=''
                 --ServerApp.password=''
-                --ServerApp.base_url=/notebook/parasol-insurance/custom-workbench
+                --ServerApp.base_url=/notebook/parasol-insurance/custom-workbench-0
                 --ServerApp.quit_button=False
                 --ServerApp.tornado_settings={"user":"user1","hub_host":"","hub_prefix":"/projects/parasol-insurance"}
             - name: JUPYTER_IMAGE
@@ -71,7 +71,7 @@ spec:
           imagePullPolicy: Always
           volumeMounts:
             - mountPath: /opt/app-root/src
-              name: custom-workbench
+              name: custom-workbench-0
             - mountPath: /dev/shm
               name: shm
             #- mountPath: /etc/pki/tls/custom-certs/ca-bundle.crt
@@ -80,11 +80,11 @@ spec:
             #  subPath: ca-bundle.crt
           workingDir: /opt/app-root/src
       enableServiceLinks: false
-      serviceAccountName: custom-workbench
+      serviceAccountName: custom-workbench-0
       volumes:
-        - name: custom-workbench
+        - name: custom-workbench-0
           persistentVolumeClaim:
-            claimName: custom-workbench
+            claimName: custom-workbench-0
         - emptyDir:
             medium: Memory
           name: shm
