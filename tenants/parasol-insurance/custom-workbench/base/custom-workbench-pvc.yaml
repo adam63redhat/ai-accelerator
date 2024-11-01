@@ -1,7 +1,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: custom-workbench-0
+  name: custom-workbench
   namespace: parasol-insurance
 spec:
   accessModes:
