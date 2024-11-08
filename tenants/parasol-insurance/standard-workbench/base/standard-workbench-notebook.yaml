@@ -97,5 +97,6 @@ spec:
             items:
               - key: ca-bundle.crt
                 path: ca-bundle.crt
-            name: ca-inject
+            name: workbench-trusted-ca-bundle
+            optional: true
           name: trusted-ca
